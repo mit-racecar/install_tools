@@ -28,7 +28,8 @@ sudo apt-get --force-yes update
 sudo apt-get --force-yes install ros-indigo-controller-manager ros-indigo-gazebo-ros-control ros-indigo-gazebo-ros-pkgs ros-indigo-joint-state-controller ros-indigo-effort-controllers 
 
 echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+
+sh -c 'echo source ~/.bashrc'
 
 cd ~/racecar-ws/src/
 catkin_init_workspace
