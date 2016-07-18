@@ -6,7 +6,10 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net --recv-key 0xB01FA116
 
 sudo apt-get --force-yes update
-sudo apt-get --force-yes install libgl1-mesa-dev-lts-utopic vim tmux git vim-runtime
+sudo apt-get --force-yes install libgl1-mesa-dev-lts-utopic
+sudo apt-get --force-yes install vim vim-runtime
+sudo apt-get --force-yes install tmux 
+sudo apt-get --force-yes install git 
 sudo apt-get --force-yes install ros-indigo-desktop-full
 sudo apt-get --force-yes install ros-indigo-ackermann-msgs ros-indigo-serial
 
