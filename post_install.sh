@@ -8,14 +8,14 @@ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `ls
 
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 
-sudo apt-get update
-sudo apt-get install libgl1-mesa-dev-lts-utopic
-sudo apt-get install ros-indigo-desktop-full
-sudo apt-get install ros-indigo-ackermann-msgs
+sudo apt-get -y update
+sudo apt-get -y install libgl1-mesa-dev-lts-utopic vim tmux 
+sudo apt-get -y install ros-indigo-desktop-full
+sudo apt-get -y install ros-indigo-ackermann-msgs
 
-sudo apt-get update
+sudo apt-get -y update
 
-sudo apt-get install ros-indigo-controller-manager ros-indigo-gazebo-ros-control ros-indigo-gazebo-ros-pkgs ros-indigo-joint-state-controller ros-indigo-effort-controllers
+sudo apt-get -y install ros-indigo-controller-manager ros-indigo-gazebo-ros-control ros-indigo-gazebo-ros-pkgs ros-indigo-joint-state-controller ros-indigo-effort-controllers
 
 mkdir -p ~/racecar-ws/src
 cd ~/racecar-ws/src
