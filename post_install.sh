@@ -35,6 +35,8 @@ catkin_init_workspace
 cd ~/racecar-ws
 catkin_make
 
+echo "source ~/racecar-ws/devel/setup.sh" >> ~/.bashrc
+echo "export ROS_IP=`hostname -I`" >> ~/.bashrc
 
 
 
