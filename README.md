@@ -24,6 +24,9 @@ tar -xzvf car_22_backup.img.tar.gz
 # Flash the TX1
 .tegraflash.py --bl cboot.bin --applet nvtboot_recovery.bin --chip 0x21 --cmd "write APP car_22_backup.img"
 
-# You can now SSH into the car using username: ubuntu, password: ubuntu
-# Don't forget to change the password!!
+# Run postinstall script. This will prompt you for the current password (ubuntu)
+# It will also prompt you for a new password
+ssh ubuntu@YOUR_CAR_IP 'wget https://raw.githubusercontent.com/mit-racecar/install_tools/master/post_install_jetson.sh | bash'
+
+# You can now SSH into the car using username: ubuntu, password: the password you entered above
 ```
