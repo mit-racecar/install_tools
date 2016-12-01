@@ -24,4 +24,6 @@ tar -xzvf car_22_backup.img.tar.gz
 # Flash the TX1
 .tegraflash.py --bl cboot.bin --applet nvtboot_recovery.bin --chip 0x21 --cmd "write APP car_22_backup.img"
 
+# You can now SSH into the car using username: ubuntu, password: ubuntu
+# Don't forget to change the password!!
 ```
