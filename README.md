@@ -29,4 +29,7 @@ tar -xzvf car_22_backup.img.tar.gz
 ssh ubuntu@YOUR_CAR_IP 'wget https://raw.githubusercontent.com/mit-racecar/install_tools/master/post_install_jetson.sh | bash'
 
 # You can now SSH into the car using username: ubuntu, password: the password you entered above
+
+# To access the default workspace for creating ROS packages that utilize MIT RACECAR components
+cd ~/racecar-ws/src/
 ```
