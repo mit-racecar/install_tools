@@ -21,8 +21,8 @@ tar -xzvf car_22_backup.img.tar.gz
 # Connect your TX1 to your computer using USB
 # Put the TX1 into DFU mode
 
-# Flash the TX1
-.tegraflash.py --bl ./t210ref/cboot.bin --applet nvtboot_recovery.bin --chip 0x21 --cmd "write APP car_22_backup.img"
+# Flash the TX1, must use root privileges
+sudo ./tegraflash.py --bl ./t210ref/cboot.bin --applet nvtboot_recovery.bin --chip 0x21 --cmd "write APP car_22_backup.img"
 
 # Run postinstall script. This will prompt you for the current password (ubuntu)
 # It will also prompt you for a new password
