@@ -1,0 +1,65 @@
+source /opt/ros/kinetic/setup.bash
+alias rosenv="env | grep ROS"
+
+# Setup the racecar env
+source ~/racecar-ws/devel/setup.bash
+
+# Force Gazebo to use OpenGL2 for greater compatibility across VMs
+export SVGA_VGPU10=0
+
+# Make an alias for connecting ROS programs to the RACECAR cars.
+runcar() {
+	# Check that we have enough arguments
+	if (( $# < 2 )) || ! [[ $1 =~ ^[0-9]+$ ]]; then
+		echo "ERROR: Wrong arguments supplied. Please refer to the usage below."
+		echo ""
+		echo "USAGE:"
+		echo "runcar <CAR_NUM> <COMMAND>"
+		echo ""
+		echo "EXAMPLE:"
+		echo "$ runcar 4 rviz"
+		echo "$ runcar 77 rostopic list"
+		return -1
+	fi
+	
+	# We have enough arguments. Proceed with executing command with remote ROS master.
+	CAR_NUM="$1"
+	CAR_IP="192.168.0.$CAR_NUM"
+	# Clean up input args
+	shift
+
+	# Allow for external ROS nodes to talk to us using our IP address.
+	VM_IP=`hostname -I`
+	
+	# Check that our IP actually exists.
+	if [[ -z "$VM_IP" ]]; then
+		echo "ERROR: The VM does not seem to have an IP address or access to the internet. Are you connected via NAT and DHCP?"
+		return -1
+	fi
+
+	# Construct URI
+	CAR_ROS_MASTER_URI="http://$CAR_IP:11311"
+
+	# Check that we can ping the car.
+	ping -c1 -w1 "$CAR_IP" >> /dev/null
+	if (( $? != 0 )); then
+		echo "ERROR: could not ping the car at $CAR_IP. Is the car on and the VM is connected to the car's router?"
+		return -1
+	fi
+
+	# Check that we can access the ros master.
+	HTTP_RESPONSE=`curl --write-out "%{http_code}" --silent --output /dev/null "$CAR_ROS_MASTER_URI"`
+        if (( HTTP_RESPONSE != 501 )); then
+                echo "ERROR: could not access the car's roscore at $CAR_IP. Is roscore running on the car?"
+                return -1
+        fi
+	
+	# Execute command with ROS env args
+	ROS_MASTER_URI="$CAR_ROS_MASTER_URI" ROS_IP="$VM_IP" "$@"
+
+	if (( $? != 0)); then
+		echo "ERROR: Check that you can ping 192.168.0.$CARNUM and that roscore is running on the car."
+	fi
+
+	return "$?"
+}
