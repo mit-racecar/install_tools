@@ -10,8 +10,9 @@ mkdir ~/MIT_RACECAR_OS
 cd ~/MIT_RACECAR_OS
 
 # Download flash utilities
-wget https://developer.nvidia.com/embedded/dlc/l4t-jetson-tx1-driver-package-24-2-1
+wget -O Tegra210_Linux_R24.2.1_aarch64.tbz2 https://developer.nvidia.com/embedded/dlc/l4t-jetson-tx1-driver-package-24-2-1
 bzip2 -d Tegra210_Linux_R24.2.1_aarch64.tbz2
+tar xf Tegra210_Linux_R24.2.1_aarch64.tar
 cd Linux_for_Tegra/bootloader
 
 #Download the base image
