@@ -21,7 +21,7 @@ cd ~/racecar-ws
 curl -L https://raw.githubusercontent.com/mit-racecar/racecar/master/racecar-vm.rosinstall > .rosinstall
 wstool update
 # Update 3rd party ROS deps
-rosdep install --from-paths src --rosdistro $ROS_DISTRO -y -r
+rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y -r
 catkin_make
 
 
