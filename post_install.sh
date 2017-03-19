@@ -12,6 +12,9 @@ sudo apt-get update
 sudo apt-get install -y libgl1-mesa-dev-lts-utopic vim vim-runtime tmux screen git curl wget ros-$ROS_DISTRO-desktop-full python-wstool
 sudo apt-get update
 
+# Get ROS commands
+source /opt/ros/$ROS_DISTRO/setup.bash
+
 echo "Setting up .bashrc"
 cd ~/
 curl -L https://raw.githubusercontent.com/mit-racecar/install_tools/master/bashrc_ending_vm.snippet >> ~/.bashrc
@@ -31,6 +34,9 @@ wstool update
 sudo rosdep init
 rosdep update
 rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y -r
+
+# Refresh ROS commands
+source /opt/ros/$ROS_DISTRO/setup.bash
 catkin_make
 
 
