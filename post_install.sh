@@ -2,7 +2,7 @@
 
 ROS_DISTRO=kinetic
 
-echo 'Installing ROS distro $ROS_DISTRO'
+echo "Installing ROS distro $ROS_DISTRO"
 sudo apt-get update --force-yes
 
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
